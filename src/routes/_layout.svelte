@@ -33,7 +33,7 @@
     })
 
 
-    // console.log('sub:', sub, phage, pub, '||', page.host, '>>', page, 'pDomain:', projectDomain)
+    console.log('[Incoming]:', sub, phage, pub, '||', page.host, '>>', page, 'pDomain:', projectDomain)
 
     // if we're a domain, check if it matches a project, if it does redirect it
     if(page.path == projectDomain) {
