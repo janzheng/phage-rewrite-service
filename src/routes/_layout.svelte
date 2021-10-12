@@ -23,12 +23,14 @@
 
     // iterate through all the projects to see if they match our page.host
     // 
-    let projectDomain
+    let projectDomain, projectName
     Object.values(notionData).find(project => {
-      let found = project && project.rows.find(r => r['Name'] == '_domain')
-      if(found) {
-        projectDomain = found['_value']
-        return found
+      let _domain = project && project.rows.find(r => r['Name'] == '_domain')
+      let _name = project && project.rows.find(r => r['Name'] == '_name')
+      if(_domain) {
+        projectDomain = _domain['_value']
+        projectName = _name['_value']
+        return _domain
       }
     })
 
@@ -38,10 +40,9 @@
 
     // if we're a domain, check if it matches a project, if it does redirect it
     if(projectDomain.includes(page.host)) {
-      console.log('[projectDomain] sending', `https://discovery.phage.directory/${sub}${page.path}`)
-      return this.redirect(301, `https://discovery.phage.directory/${sub}${page.path}`)
+      console.log('[projectDomain] sending', `https://discovery.phage.directory/${projectName}${page.path}`)
+      return this.redirect(301, `https://discovery.phage.directory/${projectName}${page.path}`)
     }
-
 
     if(sub && phage && pub) { // dumb way to check if this subdomain exists
       console.log('[subdomain] sending', `https://discovery.phage.directory/${sub}${page.path}`)
