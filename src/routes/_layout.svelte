@@ -5,8 +5,10 @@
     const [sub, phage, pub] = page.host.split('.')
 
     console.log('sub:', sub, phage, pub, '||', page.host, '>>', page)
-    if(sub && phage && pub) // dumb way to check if this exists
-      return this.redirect(301, `https://discovery.directory/${sub}${page.path}`)
+    if(sub && phage && pub) {// dumb way to check if this exists
+      console.log('sending', `https://discovery.phage.directory/${sub}${page.path}`)
+      return this.redirect(301, `https://discovery.phage.directory/${sub}${page.path}`)
+    }
 
     return this.redirect(301, `https://phage.directory/insights`)
   }
