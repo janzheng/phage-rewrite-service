@@ -3,6 +3,9 @@
 
 This is a small tool used by Phage Directory Network as a redirect/rewrite service for subdomains and custom domains. We do this because moving DNS for Phage Directory is annoying, and I also like that discovery.phage.directory is the subdomain in itself. 
 
+Uses: https://vercel.com/docs/cli#project-configuration/rewrites 
+
+
 The way it works is:
 - phage.pub DNS servers are set to Vercel
 - *.phage.pub allows and routes wildcard domains
