@@ -2,17 +2,14 @@
 
 <script context="module">
   export async function preload(page, session) {
-    console.log('Page:', page)
-    return {
-      page,
-      path: page && page.path ? page.path.substring(1) : null
-    };
-  }
-</script>
+    const [sub, phage, pub] = page.host.split('.')
 
-<script>
-  export let page, path
-  $: console.log('middle ware:', page, path)
+    console.log('sub:', sub, phage, pub, '||', page.host, '>>', page)
+    if(sub && phage && pub) // dumb way to check if this exists
+      return this.redirect(301, `https://discovery.directory/${sub}${page.path}`)
+
+    return this.redirect(301, `https://phage.directory/insights`)
+  }
 </script>
 
 
