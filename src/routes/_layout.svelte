@@ -33,10 +33,11 @@
     })
 
 
-    console.log('[Incoming]:', sub, phage, pub, '||', page.host, '>>', page, 'pDomain:', projectDomain)
+    let domains = projectDomain.split(',').map(d=>d.trim())
+    console.log('[Incoming]:', sub, phage, pub, '||', page.host, '>>', page, 'pDomain:', projectDomain,domains)
 
     // if we're a domain, check if it matches a project, if it does redirect it
-    if(page.path == projectDomain) {
+    if(projectDomain.includes(page.host)) {
       console.log('[projectDomain] sending', `https://discovery.phage.directory/${sub}${page.path}`)
       return this.redirect(301, `https://discovery.phage.directory/${sub}${page.path}`)
     }
